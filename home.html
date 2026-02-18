@@ -12,9 +12,26 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+     <style>
+    .money {
+      position: absolute;
+      top: -50px;
+      font-size: 24px;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh);
+      }
+    }
+  </style>
   </head>
-  <body class="outfit min-h-screen max-w-md bg-gray-100 mx-auto">
-    <header class="border-b-2 border-black/10 sticky top-0 z-10 bg-gray-100">
+  <body class="outfit bg-black relative">
+    <div class="min-h-screen max-w-md mx-auto bg-gray-100">
+        <div id="money-container" class="fixed inset-0 z-0 pointer-events-none"></div>
+    <div class="relative z-10">
+        <header class="border-b-2 border-black/10 sticky top-0 z-10 bg-gray-100">
         <section class="max-w-11/12 mx-auto pt-6 pb-3 flex justify-between items-center">
             <div class="left flex items-center gap-2">
                 <div class="logo">
@@ -26,7 +43,7 @@
                 </div>
             </div>
             <div class="right">
-                <a href="/index.html" class="btn btn-outline btn-primary"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
+                <a href="index.html" class="btn btn-outline btn-primary"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
             </div>
         </section>
     </header>
@@ -80,7 +97,32 @@
     </div>
     </div>
     </section>
+    </div>
+    </div>
 
     <script src="cashout.js"></script>
+    <script src="machine.js"></script>
+
+      <script>
+    const container = document.getElementById("money-container");
+
+    function createMoney() {
+      const money = document.createElement("div");
+      money.classList.add("money");
+      money.innerText = "$";
+
+      money.style.left = Math.random() * window.innerWidth + "px";
+      money.style.animationDuration = (Math.random() * 3 + 2) + "s";
+      money.style.color = "#422ad5";
+
+      container.appendChild(money);
+
+      setTimeout(() => {
+        money.remove();
+      }, 5000);
+    }
+
+    setInterval(createMoney, 200);
+  </script>
   </body>
 </html>

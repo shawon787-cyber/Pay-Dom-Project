@@ -17,3 +17,20 @@ function setBalance(value){
     const balanceElement = document.getElementById("balance");
     balanceElement.innerText = value;
 }
+
+// machine id > hide all > show id
+function showOnly(id){
+    const addMoney = document.getElementById("add-money");
+    const cashOut = document.getElementById("cashout");
+    const history = document.getElementById("history");
+    // console.log(`addMoney: ${addMoney}, cashOut: ${cashOut}`)
+
+    // hide all
+    addMoney.classList.add("hidden");
+    cashOut.classList.add("hidden");
+    history.classList.add("hidden");
+
+    // show id wala element
+    const selected = document.getElementById(id);
+    selected.classList.remove("hidden")
+}
